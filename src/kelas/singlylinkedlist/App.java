@@ -1,3 +1,5 @@
+package kelas.singlylinkedlist;
+
 public class App {
     public static void main(String[] args) throws Exception {
         SLinkedList list = new SLinkedList();
