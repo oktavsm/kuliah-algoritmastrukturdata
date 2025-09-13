@@ -1,31 +1,27 @@
-package praktikum.bab2;
-
-public class P251 {
-    public static void main(String[] args) {
-        DemoMethod1.main(args);
-    }
-}
+package praktikum.bab2.Analisis;
 
 class Kotak {
     double panjang;
     double lebar;
     double tinggi;
 
-    // mendefinisikan method void (tidak mengembalikan nilai)
-    void cetakVolume() {
-        System.out.println("Volume kotak = "
-                + (panjang * lebar * tinggi));
+    // mendefinisikan method yang mengembalikan tipe double
+    double hitungVolume() {
+        // menghitung volume
+        double vol = panjang * lebar * tinggi;
+        // mengembalikan nilai
+        return vol;
     }
+
 }
 
-class DemoMethod1 {
+public class DemoMethod2 {
     public static void main(String[] args) {
         Kotak k1, k2, k3;
         // instansiasi objek
         k1 = new Kotak();
         k2 = new Kotak();
         k3 = new Kotak();
-
         // mengisi data untuk objek k1
         k1.panjang = 4;
         k1.lebar = 3;
@@ -38,10 +34,8 @@ class DemoMethod1 {
         k3.panjang = 8;
         k3.lebar = 7;
         k3.tinggi = 6;
-        // memanggil method cetakVolume() untuk masing-masing
-        // objek
-        k1.cetakVolume();
-        k2.cetakVolume();
-        k3.cetakVolume();
+        System.out.println("Volume k1 = " + k1.hitungVolume());
+        System.out.println("Volume k2 = " + k2.hitungVolume());
+        System.out.println("Volume k3 = " + k3.hitungVolume());
     }
 }
