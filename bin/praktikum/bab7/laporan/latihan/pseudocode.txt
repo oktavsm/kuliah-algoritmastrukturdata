@@ -1,0 +1,29 @@
+# Psuedocode Push
+PROCEDURE push(item):
+  IF stack is full THEN
+    PRINT "Stack Penuh"
+  ELSE
+    FOR i FROM count DOWN TO 1:
+      stack_array[i] = stack_array[i-1]
+    ENDFOR
+
+    stack_array[0] = item
+    increment count
+  ENDIF
+ENDPROCEDURE
+
+
+# Psuedocode Pop
+PROCEDURE pop():
+  IF stack is empty THEN
+    PRINT "Stack Kosong"
+  ELSE
+    item = stack_array[0]
+    FOR i FROM 0 UP TO count-2:
+      stack_array[i] = stack_array[i+1]
+    ENDFOR
+
+    decrement count
+    RETURN item
+  ENDIF
+ENDPROCEDURE
