@@ -1,7 +1,5 @@
 package praktikum.utp.data_struct;
 
-import praktikum.bab6.livecoding.soal1.Node;
-
 // Node untuk CSLL
 class Node {
     int data;
