@@ -1,17 +1,19 @@
 package praktikum.bab8.datastruct;
 
-// Node untuk Linked List
+// Node untuk Doubly Linked List, pakai Object sebagai tipe data
 class Node {
-    int data;
+    Object data;
     Node next;
+    Node prev;
 
-    Node(int data) {
+    Node(Object data) {
         this.data = data;
         this.next = null;
+        this.prev = null;
     }
 }
 
-// Queue pakai Linked List
+// Queue pakai Doubly Linked List dengan data bertype Object
 public class QueueLinkedList {
     private Node front, rear;
 
@@ -25,41 +27,45 @@ public class QueueLinkedList {
     }
 
     // Menambahkan elemen ke belakang (enqueue)
-    public void enqueue(int data) {
+    public void enqueue(Object data) {
         Node newNode = new Node(data);
         if (isEmpty()) {
             front = rear = newNode;
         } else {
             rear.next = newNode;
+            newNode.prev = rear;
             rear = newNode;
         }
         System.out.println(data + " dimasukkan ke queue");
     }
 
     // Menghapus elemen dari depan (dequeue)
-    public int dequeue() {
+    public Object dequeue() {
         if (isEmpty()) {
             System.out.println("Queue kosong, tidak bisa dequeue");
-            return -1;
+            return null;
         }
-        int removed = front.data;
+        Object removed = front.data;
         front = front.next;
-        if (front == null)
+        if (front != null) {
+            front.prev = null;
+        } else {
             rear = null; // kalau kosong, reset rear
+        }
         System.out.println(removed + " dihapus dari queue");
         return removed;
     }
 
     // Melihat elemen depan
-    public int peek() {
+    public Object peek() {
         if (isEmpty()) {
             System.out.println("Queue kosong");
-            return -1;
+            return null;
         }
         return front.data;
     }
 
-    // Menampilkan isi queue
+    // Menampilkan isi queue dari depan ke belakang
     public void printQueue() {
         if (isEmpty()) {
             System.out.println("Queue kosong");
@@ -74,12 +80,28 @@ public class QueueLinkedList {
         }
     }
 
+    // (Opsional) Menampilkan isi queue dari belakang ke depan
+    public void printQueueReverse() {
+        if (isEmpty()) {
+            System.out.println("Queue kosong");
+        } else {
+            Node temp = rear;
+            System.out.print("Isi queue (belakang → depan): ");
+            while (temp != null) {
+                System.out.print(temp.data + " ");
+                temp = temp.prev;
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         QueueLinkedList q = new QueueLinkedList();
-        q.enqueue(100);
-        q.enqueue(200);
-        q.enqueue(300);
+        q.enqueue(100);           // Integer (autoboxing)
+        q.enqueue("dua ratus");   // String
+        q.enqueue(300.5);         // Double (autoboxing)
         q.printQueue();
+        q.printQueueReverse();
         q.dequeue();
         q.printQueue();
         System.out.println("Elemen depan: " + q.peek());
